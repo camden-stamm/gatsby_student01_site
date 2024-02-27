@@ -3,8 +3,18 @@
  */
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Student01 Site`,
+    title: `Gatsby Student01`,
     siteUrl: `https://www.yourdomain.tld`,
   },
-  plugins: [],
+  plugins: [
+    "gatsby-plugin-image",
+    "gatsby-plugin-sharp",
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: `blog`,
+        path: `${__dirname}/blog`,
+      }
+    },
+  ],
 }
