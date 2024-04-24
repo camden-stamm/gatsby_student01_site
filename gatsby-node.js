@@ -18,6 +18,16 @@ exports.createPages = async ({ graphql, actions }) => {
               preparationTime
               status
               title
+              mediaImage {
+                mediaImage {
+                  url
+                }
+              }
+              recipeInstruction {
+                value
+                format
+                processed
+              }
             }
           }
         }
