@@ -10,7 +10,7 @@ jobs:
       with:
         host: ${{ secrets.IP }}
         username: ${{ secrets.USER }}
-        key: ${{ secrets.PRIVATE_KEY }}
+        password: ${{ secrets.PRIVATE_KEY }}
         port: ${{ secrets.PORT }}
         script: |
           cd project/web/web
