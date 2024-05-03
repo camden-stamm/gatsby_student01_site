@@ -11,6 +11,7 @@ const Recipe = ({ pageContext }) => {
         <p>Number of Servings: {recipe.numberOfServings}</p>
         <p>Ingredients: {recipe.ingredients}</p>
         <img src={recipe.mediaImage.mediaImage.url}/>
+        
       </div>
     </div>
   );
