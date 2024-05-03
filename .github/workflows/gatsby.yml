@@ -18,13 +18,12 @@ jobs:
     - run: npm install -g gatsby-cli@5.13.2
     - run: gatsby build
     - run: ls -al public
-    - name: executing remote ssh commands using password
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USER }}
-        key: ${{ secrets.PRIVATE_KEY }}
-        port: ${{ secrets.PORT }}
-        script: |
-          cd site/html
-          ls -al
+    - name: Setup SSH
+      run: |
+        mkdir -p ~/.ssh/
+        echo "${{ secrets.PRIVATE_KEY }}" > ~/.ssh/deploy_key
+        sudo chmod 600 ~/.ssh/deploy_key
+        ssh-keyscan -H "${{ secrets.HOST }}" > ~/.ssh/known_hosts
+      
+    - name: SFTP upload
+      run: sftp -i ~/.ssh/deploy_key ${{ secrets.USER }}@${{ secrets.HOST }} <<< $'cd site/html \n put -r public/*'
