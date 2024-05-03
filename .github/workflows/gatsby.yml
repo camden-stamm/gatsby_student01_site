@@ -10,7 +10,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [18.19.1]
 
     steps:
     - uses: actions/checkout@v2
@@ -19,7 +19,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm i
+    - run: npm ci
     - run: npm install -g gatsby-cli@5.13.2
     - run: gatsby build
     - run: ls -al public
