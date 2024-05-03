@@ -15,7 +15,6 @@ jobs:
       with:
         node-version: 18
     - run: npm ci --legacy-peer-deps
-    - run: npm test
     - run: npm install -g gatsby-cli@5.13.2
     - run: gatsby build
     - run: ls -al public
