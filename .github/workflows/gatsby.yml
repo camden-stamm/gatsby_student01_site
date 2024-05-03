@@ -8,17 +8,12 @@ jobs:
     name: Build and deploy Gatsby site
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [18.19.1]
-
     steps:
     - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js 18
       uses: actions/setup-node@v4
       with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
+        node-version: 18
     - run: npm ci
     - run: npm test
     - run: npm install -g gatsby-cli@5.13.2
