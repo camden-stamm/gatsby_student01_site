@@ -1,17 +1,17 @@
-name: Node.js CI
+name: Build and Deploy Gatsby
 
 on:
   push:
-    branches: [ master ]
+    branches: master
 
 jobs:
-  build:
-
-    runs-on: self-hosted
+  build-and-deploy:
+    name: Build and deploy Gatsby site
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [18.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -20,6 +20,17 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm i
-    - run: npm test
-    - run: npm run build
+    - run: npm ci
+    - run: npm install -g gatsby-cli@5.13.2
+    - run: gatsby build
+    - run: ls -al public
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USER }}
+        key: ${{ secrets.PRIVATE_KEY }}
+        port: ${{ secrets.PORT }}
+        script: |
+          cd project/web/web
+          git pull
