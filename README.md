@@ -7,7 +7,7 @@ The Blog page consists of a series of .mdx blog posts. This page utilizes a Grap
 The Recipe and Article pages contain a set of links to pages that were created programmatically using data that was pulled from a Drupal demo site. I used the gatsby-source-graphql plugin to query the site using GraphQL in the gatsby-node file. I then used template files, one for the articles and one for the recipes, as templates to programmatically generate pages based on the query data that was received. In this case I wrote the query to take the first 10 articles and recipes, so 10 pages of each are created (assuming there are enough.) 
 
 (Here's an example of one of the recipe pages that was created)
-[<img src="C:\Users\camde\Pictures\Screenshots\recipeExample.png" alt="Example of recipe page"/>]
+[<img src="src/images/recipeExample.png" alt="Example of recipe page"/>]
 
 ## 🚀 Deploying with GitHub Actions
 
